@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Home - IR</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="icon" href="{% static 'assets/favicon.ico' %}"size="any" type="image/svg+xml">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+	<link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+	
+</head>
+
+<body>
+	<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand col-3">IR</a>
+			<!-- <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button> -->
+
+			<div class="col-6" style="text-align: center;">
+				<form class="d-none d-sm-inline-block navbar-search" action="/hw/index">
+						<div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." name="msg">
+						<select class="custom-select form-control-sm" style="background: #808080; color: whitesmoke; border: 0px;" name="selected" onchange="submit()">
+							<option selected="selected" disabled>TFIDF/BM25</option>
+							<option value="tfidf">TFIDF</option>
+							<option value="bm25">BM25</option>
+						</select>
+						</div>
+				</form>
+			</div>
+			<button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+			<div class="collapse navbar-collapse col-3" id="navbarResponsive">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="/hw/index?msg=_init">Home</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<header class="masthead" style="margin-bottom: 30px; background-image:url({% static 'assets/img/home-bg.jpg' %});">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="mx-auto position-relative">
+					<div class="site-heading">
+						<h1>IR Final Project</h1>
+						<span class="subheading">
+						Search Engine for Covid / Heart Disease / Diabetes / AKI
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container col-8 offset-2" style="text-align: center;">
+		<form class="d-none d-sm-inline-block navbar-search" action="/hw/index">
+			<button class="btn btn-light" type="submit" name="_type" value="normal">Normal</button>
+			<button class="btn btn-light" type="submit" name="_type" value="aki">AKI</button>
+			<button class="btn btn-light" type="submit" name="_type" value="diabetes_mellitus">Diabetes</button>
+			<button class="btn btn-light" type="submit" name="_type" value="heart_disease">Heart Disease</button>
+			<button class="btn btn-light" type="submit" name="_type" value="covid19">Covid 19</button>
+		</form>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-lg-8">
+				{%for doc in docs%}
+					<div class="post-preview"><a href="/hw/article/{{doc.1}}">
+							<h2 class="post-title">{{doc.2}}</h2>
+							<h4 class="post-subtitle">{{doc.4}}</h3>
+						</a>
+						{% if type == 'search' %}
+							<p class="post-meta">
+								Article category：{{doc.6}}    TFIDF：{{doc.0}}   BM25：{{doc.5}}
+							</p>
+						{% endif %}
+					</div>
+					<hr>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-lg-8 mx-auto">
+					<ul class="list-inline text-center">
+						<li class="list-inline-item">
+							<span class="fa-stack fa-lg">
+								<i class="fa fa-circle fa-stack-2x"></i>
+								<a class="link-light social-link rounded-circle" href="https://github.com/imrcrossp" target="_black">
+								<i class="fa fa-github fa-stack-1x fa-inverse"></a></i>
+							</span>
+							<span class="fa-stack fa-lg">
+								<i class="fa fa-circle fa-stack-2x"></i>
+								<a class="link-light social-link rounded-circle" href="https://github.com/lingxuanying" target="_black">
+								<i class="fa fa-github-alt fa-stack-1x fa-inverse"></a></i>
+							</span>
+						</li>
+					</ul>
+					<p class="text-muted copyright">Copyright&nbsp;©&nbsp;IR 2022</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1/dist/chart.xkcd.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/clean-blog.js' %}"></script>
+	<script src="{% static 'js/stylish-portfolio.js' %}"></script>
+	<script src="{% static 'js/service.js' %}"></script>
+	<script src="{% static 'js/csrf.js' %}"></script>
+	<script src="{% static 'js/server.js' %}"></script>
+
+	<script src="{% static 'js/clean-blog.js' %}"></script>
+</body>
+
+</html>

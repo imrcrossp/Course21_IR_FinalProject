@@ -1,7 +1,7 @@
 # IR Final Project
 
 ## Overview
-![alt text](https://github.com/imrcrossp/Course21_IR_FinalProject/index.png?raw=true)
+![alt text](https://github.com/imrcrossp/Course21_IR_FinalProject/index.PNG?raw=true)
 
 ## Try!
 >>由於 nltk 安裝較麻煩，需要先確認是否有package
